@@ -93,10 +93,14 @@ class OpenaiBase:
                     f"log chat error:\n{request.client.host=} {request.method=}: {e}"
                 )
 
-            if chat_info:
-                model = chat_info.get('model')
-                if 'gpt-4' in model:
-                    raise HTTPException(status=status.HTTP_400_BAD_REQUEST, detail="don't support gpt-4 model")
+        if not chat_info:
+            chat_info = await cls.chatsaver.parse_payload_to_content(
+                request, route_path=url_path
+            )
+
+        model = chat_info.get('model')
+        if 'gpt-4' in model:
+            raise HTTPException(status=status.HTTP_400_BAD_REQUEST, detail="don't support gpt-4 model")
 
         req = client.build_request(
             request.method,
