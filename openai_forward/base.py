@@ -79,6 +79,7 @@ class OpenaiBase:
 
         log_chat_completions = False
         uid = None
+        chat_info = None
         if cls._LOG_CHAT and request.method == "POST":
             try:
                 chat_info = await cls.chatsaver.parse_payload_to_content(
