@@ -35,7 +35,7 @@ class OpenaiBase:
     )
     if _LOG_CHAT:
         setting_log(save_file=False)
-        chatsaver = ChatSaver()
+    chatsaver = ChatSaver()
 
     def validate_request_host(self, ip):
         if self.IP_WHITELIST and ip not in self.IP_WHITELIST:
