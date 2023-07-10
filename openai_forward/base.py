@@ -101,7 +101,7 @@ class OpenaiBase:
 
         model = chat_info.get('model')
         if 'gpt-4' in model:
-            raise HTTPException(status=status.HTTP_400_BAD_REQUEST, detail="don't support gpt-4 model")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="don't support gpt-4 model")
 
         req = client.build_request(
             request.method,
