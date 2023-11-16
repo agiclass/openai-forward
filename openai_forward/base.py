@@ -71,7 +71,7 @@ class OpenaiBase:
         url = httpx.URL(path=url_path, query=request.url.query.encode("utf-8"))
         headers = dict(request.headers)
         auth = headers.pop("authorization", "")
-        auth_headers_dict = {"Content-Type": "application/json", "Authorization": auth}
+        auth_headers_dict = {"Content-Type": "application/json", "Authorization": auth,"OpenAI-Beta": "assistants=v1"}
         auth_prefix = "Bearer "
         if cls._no_auth_mode or auth and auth[len(auth_prefix) :] in cls._FWD_KEYS:
             auth = auth_prefix + next(cls._cycle_api_key)
